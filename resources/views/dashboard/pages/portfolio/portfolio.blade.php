@@ -43,6 +43,14 @@
                 @endforeach
 
             </div>
+            <div class="d-flex justify-content-center">
+            {{$portfolio->links()}}
+            </div>
+            <style> 
+                .w-5{
+                    display: none
+                }
+            </style>
         </div>
     </section>
 

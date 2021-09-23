@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Contact;
 use App\Models\Portfolio;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -22,10 +23,20 @@ class DatabaseSeeder extends Seeder
 
         Contact::factory(10)->create();
 
+        DB::table('roles')->insert([
+            ['name' => 'admin'],
+            ['name' => 'webmaster'],
+            ['name' => 'visiteur'],
+
+        ]);
+
+        // User::factory(5)->create();
+
         DB::table('users')->insert([
             'name' => 'test',
             'email' => 'test@mail.com',
             'password' => Hash::make('testtest'),
+            'role_id' => 2,
             'created_at' => now()
         ]);
 
@@ -47,5 +58,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'START BOOTSTRAP',
             'description' => 'Graphic Artist - Web Designer - Illustrator'
         ]);
+
+
     }
 }
