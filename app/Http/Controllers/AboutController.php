@@ -70,6 +70,8 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about)
     {
+        $this->authorize('update', $about);
+        
         $request->validate([
             "text_part_one" => "required",
             "text_part_two" => "required",

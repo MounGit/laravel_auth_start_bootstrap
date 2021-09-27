@@ -19,14 +19,15 @@ class HeaderController extends Controller
     }
 
     public function update (Header $id, Request $request) {
+        $header = $id;
 
+        $this->authorize('update', $header);
         $request->validate([
             "img" => "required",
             "title" => "required",
             "description" => "required"
         ]);
         
-        $header = $id;
 
         Storage::disk('public')->delete('img/' . $header->img);
         

@@ -18,7 +18,8 @@ class InfoFooterController extends Controller
     }
 
     public function update (InfoFooter $id, Request $request){
-
+        $footer = $id;
+        $this->authorize('update', $footer);
         $request->validate([
             "street" => "required",
             "city" => "required",
@@ -27,7 +28,6 @@ class InfoFooterController extends Controller
             "link" => 'required',
         ]);
 
-        $footer = $id;
         $footer->street = $request->street;
         $footer->city = $request->city;
         $footer->info = $request->info;

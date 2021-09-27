@@ -89,6 +89,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
+        $this->authorize('delete', $contact);
         $contact->delete();
         return redirect()->route('contacts.index')->with('message', 'Message supprimé');
     }

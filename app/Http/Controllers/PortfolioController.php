@@ -38,6 +38,7 @@ class PortfolioController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Portfolio::class);
         $request->validate([
             "name" => "required",
             "url" => "required",
@@ -87,6 +88,7 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, Portfolio $portfolio)
     {
+        $this->authorize('update', $portfolio);
         $request->validate([
             "name" => "required",
             "url" => "required",
@@ -113,6 +115,7 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio)
     {
+        $this->authorize('delete', $portfolio);
         Storage::disk('public')->delete('img/' . $portfolio->url);
         $portfolio->delete();
         return redirect()->route('portfolios.index')->with('message', 'Elément supprimé avec succès au portfolio');

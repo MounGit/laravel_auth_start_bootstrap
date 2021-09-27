@@ -3,7 +3,7 @@
 @section('back')
 
     <section class="container py-5">
-    <h2 class="page-section-heading text-center text-uppercase text-secondary my-5">Messages</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary my-5">Messages</h2>
 
         <table class="table">
             <thead>
@@ -19,12 +19,17 @@
                         <th scope="row">{{ $data->id }}</th>
                         <td>{{ $data->name }}</td>
                         <td class="d-flex justify-content-around">
-                            <a class="btn btn-primary text-black" href="{{route('contacts.show', $data->id)}}">Détails</a>
-                            <form action="{{route('contacts.destroy', $data->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger text-black" type="submit">Supprimer</button>
-                            </form>
+                            <a class="btn btn-primary text-black"
+                                href="{{ route('contacts.show', $data->id) }}">Détails</a>
+                            @can('delete', $contact)
+                                <form action="{{ route('contacts.destroy', $data->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger text-black" type="submit">Supprimer</button>
+                                </form>
+                            @endcan
+
+
                         </td>
                     </tr>
                 @endforeach

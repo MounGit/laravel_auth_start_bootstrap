@@ -38,24 +38,42 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard.pages.home.dashboard');
-})->middleware(['auth'])->name('dashboard');
+})
+// ->middleware(['auth'])
+->name('dashboard');
 
 
-Route::resource('/portfolios', PortfolioController::class)->middleware(['auth', 'admin']);
+Route::resource('/portfolios', PortfolioController::class)
+// ->middleware(['auth', 'admin'])
+;
 
-Route::resource('/abouts', AboutController::class)->middleware(['auth', 'admin']);
+Route::resource('/abouts', AboutController::class)
+// ->middleware(['auth', 'admin'])
+;
 
-Route::get('/headers', [HeaderController::class, 'index'])->middleware(['auth', 'admin'])->name('hdr');
+Route::get('/headers', [HeaderController::class, 'index'])
+// ->middleware(['auth', 'admin'])
+->name('hdr');
 
-Route::get('/headers/{id}/edit', [HeaderController::class, 'edit'])->middleware(['auth', 'admin'])->name('hdrEdit');
+Route::get('/headers/{id}/edit', [HeaderController::class, 'edit'])
+// ->middleware(['auth', 'admin'])
+->name('hdrEdit');
 
-Route::put('/headers/{id}/update', [HeaderController::class, 'update'])->middleware(['auth', 'admin'])->name('hdrUpdate');
+Route::put('/headers/{id}/update', [HeaderController::class, 'update'])
+// ->middleware(['auth', 'admin'])
+->name('hdrUpdate');
 
-Route::get('/footers', [InfoFooterController::class, 'index'])->middleware(['auth', 'admin'])->name('ftr');
+Route::get('/footers', [InfoFooterController::class, 'index'])
+// ->middleware(['auth', 'admin'])
+->name('ftr');
 
-Route::get('/footers/{id}/edit', [InfoFooterController::class, 'edit'])->middleware(['auth', 'admin'])->name('ftrEdit');
+Route::get('/footers/{id}/edit', [InfoFooterController::class, 'edit'])
+// ->middleware(['auth', 'admin'])
+->name('ftrEdit');
 
-Route::put('/footers/{id}/update', [InfoFooterController::class, 'update'])->middleware(['auth', 'admin'])->name('ftrUpdate');
+Route::put('/footers/{id}/update', [InfoFooterController::class, 'update'])
+// ->middleware(['auth', 'admin'])
+->name('ftrUpdate');
 
 
 Route::resource('/contacts', ContactController::class);
